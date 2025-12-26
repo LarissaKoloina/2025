@@ -1,0 +1,6 @@
+.header-hero {
+    background-image: url("image.jpg"); /* chemin de ton image */
+    background-size: cover;      /* l’image couvre tout le header */
+    background-position: center; /* centrée */
+    background-repeat: no-repeat;
+}
