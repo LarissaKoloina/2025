@@ -1,6 +1,9 @@
 .header-hero {
-    background-image: url("nikhil-sachan-Ahh-BpyGA6U-unsplash.jpg"); 
-    background-size: cover;      
-    background-position: center; 
+    background-image: url("https://images.unsplash.com/photo-1503264116251-35a269479413");
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
 }
