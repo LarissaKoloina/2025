@@ -1,91 +1,236 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Portfolio Réorganisé</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #121212;
-    color: #eee;
-    margin: 0;
-    padding: 20px;
-  }
-  .container {
-    display: flex;
-    max-width: 900px;
-    margin: 0 auto;
-    gap: 40px;
-    align-items: flex-start;
-  }
-  .photo {
-    flex: 0 0 250px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 8px 16px rgba(255, 20, 60, 0.5);
-  }
-  .photo img {
-    width: 100%;
-    display: block;
-  }
-  .infos {
-    flex: 1;
-    line-height: 1.6;
-  }
-  .infos h2 {
-    color: #ff2f55;
-    margin-top: 0;
-    margin-bottom: 15px;
-  }
-  .infos p {
-    font-size: 1.1rem;
-    color: #ccc;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV premium </title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --rose-principal: #ff2d55;
+            --noir-profond: #0a0a0a;
+            --noir-carte: #161616;
+        }
 
-  /* Animation fade-in */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-  }
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
+        body {
+            background-color: var(--noir-profond);
+            color: #ffffff;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Barre d'annonce */
+        #message-bar {
+            background-color: var(--rose-principal);
+            color: white;
+            text-align: center;
+            padding: 4px 0;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+
+        /* LOGO & NAVBAR */
+        .navbar { 
+            background-color: rgba(0,0,0,0.95) !important; 
+            border-bottom: 1px solid #222; 
+            padding: 10px 0;
+        }
+        
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .navbar-brand:hover {
+            opacity: 0.8;
+        }
+
+        .logo-icon {
+            width: 35px;
+            height: 35px;
+            margin-right: 12px;
+            filter: drop-shadow(0 0 5px var(--rose-principal));
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            color: white;
+        }
+
+        /* Animation pages */
+        .page { transition: all 0.4s ease; }
+        .hidden { display: none; opacity: 0; }
+
+        /* Profil */
+        .profile-img {
+            width: 140px; height: 140px;
+            border-radius: 50%;
+            border: 3px solid var(--rose-principal);
+            object-fit: cover;
+            box-shadow: 0 0 25px rgba(255, 45, 85, 0.2);
+        }
+
+        .section-title {
+            font-size: 0.9rem; color: var(--rose-principal);
+            text-transform: uppercase; letter-spacing: 2px;
+            font-weight: bold; margin-bottom: 15px; display: block;
+        }
+
+        /* Cartes & Badges */
+        .card { background-color: var(--noir-carte); border: 1px solid #222; overflow: hidden; }
+        .card-img-top { height: 180px; object-fit: cover; }
+        .badge-skill { 
+            background: #222; border: 1px solid var(--rose-principal); 
+            color: white; padding: 5px 12px; border-radius: 20px; 
+            font-size: 0.8rem; margin: 3px; display: inline-block;
+        }
+
+        /* Email Box */
+        .email-link-box {
+            background: linear-gradient(90deg, #1a1a1a 0%, #252525 100%);
+            border: 1px dashed var(--rose-principal);
+            padding: 20px; border-radius: 10px; display: inline-block;
+        }
+
+        .btn-rose { background: var(--rose-principal); color: white; border: none; font-weight: bold; padding: 12px 30px; }
+        .form-control { background: #1a1a1a; border: 1px solid #333; color: white; }
+    </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="photo fade-in">
-    <img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&w=600&q=80" alt="Photo profil" />
-  </div>
-  <div class="infos fade-in">
-    <h2>Expériences et Compétences</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nibh et dapibus feugiat, justo augue blandit nibh, in dignissim ligula erat quis lorem. Phasellus sed erat a odio dictum malesuada non non elit. Vivamus efficitur, lectus ut cursus convallis, lorem nisi sollicitudin eros, in luctus leo libero ut sem.</p>
-    <p>Praesent euismod, nulla at tincidunt aliquam, elit elit congue nunc, quis aliquet eros enim at magna. Morbi scelerisque magna et ex fringilla, sed feugiat nibh pulvinar. Fusce non massa at nunc porttitor commodo. Curabitur laoreet eros ut urna pulvinar, nec varius metus egestas.</p>
-    <p>In hac habitasse platea dictumst. Mauris pretium purus sed lectus dapibus, id facilisis libero varius. Integer et leo sed justo convallis hendrerit a at mauris. Cras vulputate enim sed magna efficitur, et feugiat metus faucibus.</p>
-  </div>
-</div>
+    <div id="message-bar">Initialisation...</div>
 
-<script>
-  // Animation simple au scroll pour faire apparaître doucement les blocs
-  function revealOnScroll() {
-    const elements = document.querySelectorAll('.fade-in');
-    const windowBottom = window.innerHeight;
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <div class="navbar-brand" onclick="showPage('home')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="Logo" class="logo-icon">
+                <span class="logo-text">G<span style="color:var(--rose-principal)">.</span>E</span>
+            </div>
+            
+            <div class="ms-auto">
+                <button class="btn btn-outline-light btn-sm px-3" onclick="showPage('home')">Accueil</button>
+            </div>
+        </div>
+    </nav>
 
-    elements.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < windowBottom - 50) {
-        el.classList.add('visible');
-      }
-    });
-  }
+    <main id="page-home" class="page">
+        <header class="text-center py-5">
+            <div class="container">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&fit=crop" class="profile-img mb-3">
+                <h1 class="display-6 fw-bold">G. <span style="color:var(--rose-principal)">E.</span></h1>
+                <p class="lead text-secondary">Experte en --------------</p>
+                <button onclick="showPage('recruter')" class="btn btn-rose mt-2">ME RECRUTER</button>
+            </div>
+        </header>
 
-  window.addEventListener('scroll', revealOnScroll);
-  window.addEventListener('load', revealOnScroll);
-</script>
+        <div class="container pb-5">
+            <div class="row g-5">
+                <div class="col-md-7">
+                    <span class="section-title">Expériences</span>
+                    <div class="mb-4 border-start border-secondary ps-4">
+                        <h5 class="text-white">  Navigation</h5>
+                        <p class="text-rose small mb-1">Projets GPS & Mobilité</p>
+                        <p class="text-secondary small">Lorem ipsum dolor si. Even qui rem. Voluptatem dolorio vero enim!</p>
+                    </div>
+                    <div class="mb-4 border-start border-secondary ps-4">
+                        <h5 class="text-white">Interface Technique</h5>
+                        <p class="text-rose small mb-1">Forum du Bâtiment</p>
+                        <p class="text-secondary small"> outils numériques pour le secteur de la construction.</p>
+                    </div>
 
+                    <span class="section-title mt-5">Projets</span>
+                    <div class="row g-3">
+                        <div class="col-6"><img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=400&h=250&fit=crop" class="img-fluid rounded border border-secondary" alt="GPS"></div>
+                        <div class="col-6"><img src="https://images.unsplash.com/photo-1503387762-592dea58292b?q=80&w=400&h=250&fit=crop" class="img-fluid rounded border border-secondary" alt="Bâtiment"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <span class="section-title">Compétences</span>
+                    <div class="mb-5">
+                        <div class="badge-skill">Navigation GPS</div>
+                        <div class="badge-skill">Logistique</div>
+                        <div class="badge-skill">BTP Digital</div>
+                        <div class="badge-skill">Architecture IT</div>
+                    </div>
+
+                    <span class="section-title">Contact Direct</span>
+                    <div class="email-link-box w-100 text-center">
+                        <a href="mailto:jmrtinx21@proton.me" class="text-white fw-bold fs-5 text-decoration-none">
+                            jmrtinx21<span style="color:var(--rose-principal)">@proton.me</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section id="page-recruter" class="page hidden pt-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h2 class="text-center mb-4">Lancer une <span style="color:var(--rose-principal)">Collaboration</span></h2>
+                    <form id="contactForm" class="bg-black p-4 rounded border border-secondary">
+                        <div class="mb-3">
+                            <label class="small text-secondary">VOTRE ENTREPRISE</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="small text-secondary">VOTRE EMAIL</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="small text-secondary">MESSAGE</label>
+                            <textarea class="form-control" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-rose w-100">ENVOYER</button>
+                        <p class="text-center mt-3"><a href="#" onclick="showPage('home')" class="text-secondary small">Retour au CV</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center py-4 mt-5 border-top border-secondary">
+        <p class="text-secondary small">© 2025 G.E. - Noir & Rose Edition</p>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            const home = document.getElementById('page-home');
+            const recruter = document.getElementById('page-recruter');
+            if(pageId === 'recruter') {
+                home.classList.add('hidden');
+                setTimeout(() => { home.style.display = 'none'; recruter.style.display = 'block'; setTimeout(() => recruter.classList.remove('hidden'), 50); }, 400);
+            } else {
+                recruter.classList.add('hidden');
+                setTimeout(() => { recruter.style.display = 'none'; home.style.display = 'block'; setTimeout(() => home.classList.remove('hidden'), 50); }, 400);
+            }
+            window.scrollTo(0,0);
+        }
+
+        const messages = ["⚡ DISPONIBLE", "🚗 EXPERT GPS", "🏗️ BÂTIMENT", "📦 RAPIDE"];
+        let idx = 0;
+        const bar = document.getElementById("message-bar");
+        function updateMsg() {
+            bar.style.opacity = 0;
+            setTimeout(() => { bar.textContent = messages[idx]; bar.style.opacity = 1; idx = (idx + 1) % messages.length; }, 400);
+        }
+        setInterval(updateMsg, 3000); updateMsg();
+
+        document.getElementById('contactForm').onsubmit = (e) => {
+            e.preventDefault();
+            alert("Merci ! Message bien reçu.");
+            showPage('home');
+        };
+    </script>
 </body>
 </html>
