@@ -3,232 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV premium </title>
+    <title>G.E. | Portfolio Premium </title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <style>
         :root {
-            --rose-principal: #ff2d55;
-            --noir-profond: #0a0a0a;
-            --noir-carte: #161616;
+            --rose: #ff2d55;
+            --noir: #0a0a0a;
         }
 
         body {
-            background-color: var(--noir-profond);
+            background-color: var(--noir);
             color: #ffffff;
             font-family: 'Inter', 'Segoe UI', sans-serif;
-            overflow-x: hidden;
+            margin: 0;
+            transition: background-color 0.4s;
         }
 
-        /* Barre d'annonce */
-        #message-bar {
-            background-color: var(--rose-principal);
+        /* --- NAVBAR --- */
+        .navbar { background: transparent; padding: 25px 0; }
+        .logo-box { 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            text-decoration: none;
+            color: inherit;
+        }
+        .logo-icon { width: 35px; margin-right: 12px; filter: drop-shadow(0 0 5px var(--rose)); }
+        #nav-logo-text { font-weight: 800; font-size: 1.5rem; }
+
+        /* --- PAGE ACCUEIL (DARK) --- */
+        #page-home { padding-top: 50px; }
+        .btn-outline-rose {
+            border: 2px solid var(--rose);
             color: white;
-            text-align: center;
-            padding: 4px 0;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
+            padding: 12px 35px;
             font-weight: bold;
-        }
-
-        /* LOGO & NAVBAR */
-        .navbar { 
-            background-color: rgba(0,0,0,0.95) !important; 
-            border-bottom: 1px solid #222; 
-            padding: 10px 0;
-        }
-        
-        .navbar-brand {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
             transition: 0.3s;
         }
+        .btn-outline-rose:hover { background: var(--rose); color: white; }
 
-        .navbar-brand:hover {
-            opacity: 0.8;
+        /* --- PAGE RECRUTEMENT (CLAIR) --- */
+        #page-recruter {
+            background-color: #ffffff;
+            color: #1a1a1a;
+            min-height: 100vh;
+            display: none;
         }
 
-        .logo-icon {
-            width: 35px;
-            height: 35px;
-            margin-right: 12px;
-            filter: drop-shadow(0 0 5px var(--rose-principal));
-        }
-
-        .logo-text {
-            font-weight: 800;
-            font-size: 1.4rem;
-            letter-spacing: 1px;
-            color: white;
-        }
-
-        /* Animation pages */
-        .page { transition: all 0.4s ease; }
-        .hidden { display: none; opacity: 0; }
-
-        /* Profil */
-        .profile-img {
-            width: 140px; height: 140px;
-            border-radius: 50%;
-            border: 3px solid var(--rose-principal);
+        /* Photo à droite avec recadrage au hasard */
+        .photo-aside {
+            width: 100%;
+            height: 600px;
             object-fit: cover;
-            box-shadow: 0 0 25px rgba(255, 45, 85, 0.2);
+            /* Recadrage asymétrique unique */
+            clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 85%);
+            border-right: 10px solid var(--rose);
         }
 
-        .section-title {
-            font-size: 0.9rem; color: var(--rose-principal);
-            text-transform: uppercase; letter-spacing: 2px;
-            font-weight: bold; margin-bottom: 15px; display: block;
+        /* Informations textuelles (Aside) */
+        .aside-text-content {
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+            font-size: 0.95rem;
+            color: #555;
+        }
+        .info-label {
+            color: var(--rose);
+            font-weight: bold;
+            display: block;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            margin-top: 15px;
         }
 
-        /* Cartes & Badges */
-        .card { background-color: var(--noir-carte); border: 1px solid #222; overflow: hidden; }
-        .card-img-top { height: 180px; object-fit: cover; }
-        .badge-skill { 
-            background: #222; border: 1px solid var(--rose-principal); 
-            color: white; padding: 5px 12px; border-radius: 20px; 
-            font-size: 0.8rem; margin: 3px; display: inline-block;
+        /* Formulaire */
+        .form-container {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 1px solid #eee;
         }
-
-        /* Email Box */
-        .email-link-box {
-            background: linear-gradient(90deg, #1a1a1a 0%, #252525 100%);
-            border: 1px dashed var(--rose-principal);
-            padding: 20px; border-radius: 10px; display: inline-block;
+        .form-control {
+            border-radius: 0;
+            border: 1px solid #ddd;
+            padding: 12px;
         }
+        .form-control:focus { border-color: var(--rose); box-shadow: none; }
+        .btn-send { background: var(--rose); color: white; border: none; padding: 15px; width: 100%; font-weight: bold; }
 
-        .btn-rose { background: var(--rose-principal); color: white; border: none; font-weight: bold; padding: 12px 30px; }
-        .form-control { background: #1a1a1a; border: 1px solid #333; color: white; }
+        /* --- LOGIQUE DE NAVIGATION --- */
+        .hidden { display: none !important; }
+        .visible { display: block !important; }
     </style>
 </head>
 <body>
 
-    <div id="message-bar">Initialisation...</div>
-
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <nav class="navbar">
         <div class="container">
-            <div class="navbar-brand" onclick="showPage('home')">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="Logo" class="logo-icon">
-                <span class="logo-text">G<span style="color:var(--rose-principal)">.</span>E</span>
-            </div>
-            
-            <div class="ms-auto">
-                <button class="btn btn-outline-light btn-sm px-3" onclick="showPage('home')">Accueil</button>
+            <div class="logo-box" onclick="showPage('home')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" class="logo-icon">
+                <span id="nav-logo-text">Larissa<span style="color:var(--rose)">.</span>RAZAFISON</span>
             </div>
         </div>
     </nav>
 
-    <main id="page-home" class="page">
-        <header class="text-center py-5">
-            <div class="container">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&fit=crop" class="profile-img mb-3">
-                <h1 class="display-6 fw-bold">G. <span style="color:var(--rose-principal)">E.</span></h1>
-                <p class="lead text-secondary">Experte en --------------</p>
-                <button onclick="showPage('recruter')" class="btn btn-rose mt-2">ME RECRUTER</button>
+    <main id="page-home" class="container">
+        <div class="row align-items-center py-5">
+            <div class="col-lg-6">
+                <h1 class="display-1 fw-bold mb-4">DESIGNER <br>& DEV <span style="color:var(--rose)">.</span></h1>
+                <p class="lead text-secondary mb-5">  Navigation GPS, Systèmes de Mobilité et Solutions pour le Forum du Bâtiment.</p>
+                <button class="btn btn-outline-rose" onclick="showPage('recruter')">RECRUTER PROFIL</button>
             </div>
-        </header>
-
-        <div class="container pb-5">
-            <div class="row g-5">
-                <div class="col-md-7">
-                    <span class="section-title">Expériences</span>
-                    <div class="mb-4 border-start border-secondary ps-4">
-                        <h5 class="text-white">  Navigation</h5>
-                        <p class="text-rose small mb-1">Projets GPS & Mobilité</p>
-                        <p class="text-secondary small">Lorem ipsum dolor si. Even qui rem. Voluptatem dolorio vero enim!</p>
-                    </div>
-                    <div class="mb-4 border-start border-secondary ps-4">
-                        <h5 class="text-white">Interface Technique</h5>
-                        <p class="text-rose small mb-1">Forum du Bâtiment</p>
-                        <p class="text-secondary small"> outils numériques pour le secteur de la construction.</p>
-                    </div>
-
-                    <span class="section-title mt-5">Projets</span>
-                    <div class="row g-3">
-                        <div class="col-6"><img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=400&h=250&fit=crop" class="img-fluid rounded border border-secondary" alt="GPS"></div>
-                        <div class="col-6"><img src="https://images.unsplash.com/photo-1503387762-592dea58292b?q=80&w=400&h=250&fit=crop" class="img-fluid rounded border border-secondary" alt="Bâtiment"></div>
-                    </div>
-                </div>
-
-                <div class="col-md-5">
-                    <span class="section-title">Compétences</span>
-                    <div class="mb-5">
-                        <div class="badge-skill">Navigation GPS</div>
-                        <div class="badge-skill">Logistique</div>
-                        <div class="badge-skill">BTP Digital</div>
-                        <div class="badge-skill">Architecture IT</div>
-                    </div>
-
-                    <span class="section-title">Contact Direct</span>
-                    <div class="email-link-box w-100 text-center">
-                        <a href="mailto:jmrtinx21@proton.me" class="text-white fw-bold fs-5 text-decoration-none">
-                            jmrtinx21<span style="color:var(--rose-principal)">@proton.me</span>
-                        </a>
+            <div class="col-lg-6 text-center">
+                <div class="p-5">
+                    <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=500" class="img-fluid rounded shadow-lg mb-4" alt="GPS">
+                    <div class="d-flex justify-content-center gap-3">
+                        <div class="p-3 border border-secondary rounded"> 
+                            <small class="d-block text-secondary">CONTACT  </small>
+                            <a href="mailto:jmrtinx21@proton.me" class="text-white text-decoration-none fw-bold">jmrtinx21@proton.me</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <section id="page-recruter" class="page hidden pt-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <h2 class="text-center mb-4">Lancer une <span style="color:var(--rose-principal)">Collaboration</span></h2>
-                    <form id="contactForm" class="bg-black p-4 rounded border border-secondary">
-                        <div class="mb-3">
-                            <label class="small text-secondary">VOTRE ENTREPRISE</label>
-                            <input type="text" class="form-control" required>
+    <main id="page-recruter">
+        <div class="container py-5">
+            <div class="row g-5">
+                
+                <div class="col-lg-7">
+                    <h2 class="display-4 fw-bold mb-4">ME  <span style="color:var(--rose)">Recruter</span></h2>
+                    
+                    <div class="row mb-5">
+                        <div class="col-md-6">
+                            <div class="aside-text-content">
+                                <span class="info-label">Profil  </span>
+                                <p>    géolocalisation et interfaces complexes. Analyse de données de trafic et optimisation de flux logistiques.</p>
+                                
+                                <span class="info-label">Secteurs Clés</span>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem molestiae suscipit iusto magni voluptate beatae, libero distinctio ex sapiente maiores temporibus magnam veritatis.</p>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="small text-secondary">VOTRE EMAIL</label>
-                            <input type="email" class="form-control" required>
+                        <div class="col-md-6">
+                            <div class="aside-text-content">
+                                <span class="info-label">Disponibilité</span>
+                                <p>Janvier 2025 - Poste fixe ou Mission freelance longue durée.</p>
+                                
+                                <span class="info-label">Contact</span>
+                                <p>koloinalarisssa.r@gmail.com<br>Mada / International</p>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="small text-secondary">MESSAGE</label>
-                            <textarea class="form-control" rows="4"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-rose w-100">ENVOYER</button>
-                        <p class="text-center mt-3"><a href="#" onclick="showPage('home')" class="text-secondary small">Retour au CV</a></p>
-                    </form>
+                    </div>
+
+                    <div class="form-container">
+                        <h4 class="mb-4">Soumettre une proposition</h4>
+                        <form id="recruteForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" placeholder="Nom de l'entreprise" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="email" class="form-control" placeholder="Votre Email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <select class="form-control">
+                                    <option>Type de poste</option>
+                                    <option>CDI</option>
+                                    <option>Freelance / Mission</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <textarea class="form-control" rows="5" placeholder="Détails de la mission..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-send">ENVOYER LE DOSSIER DE RECRUTEMENT</button>
+                        </form>
+                    </div>
                 </div>
+
+                <div class="col-lg-5">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800" class="photo-aside" alt="G.E. Profil">
+                </div>
+
             </div>
         </div>
-    </section>
-
-    <footer class="text-center py-4 mt-5 border-top border-secondary">
-        <p class="text-secondary small">© 2025 G.E. - Noir & Rose Edition</p>
-    </footer>
+    </main>
 
     <script>
         function showPage(pageId) {
             const home = document.getElementById('page-home');
             const recruter = document.getElementById('page-recruter');
+            const logoText = document.getElementById('nav-logo-text');
+
             if(pageId === 'recruter') {
                 home.classList.add('hidden');
-                setTimeout(() => { home.style.display = 'none'; recruter.style.display = 'block'; setTimeout(() => recruter.classList.remove('hidden'), 50); }, 400);
+                recruter.style.display = 'block';
+                document.body.style.backgroundColor = '#ffffff';
+                logoText.style.color = '#1a1a1a'; // Logo noir sur fond blanc
             } else {
-                recruter.classList.add('hidden');
-                setTimeout(() => { recruter.style.display = 'none'; home.style.display = 'block'; setTimeout(() => home.classList.remove('hidden'), 50); }, 400);
+                recruter.style.display = 'none';
+                home.classList.remove('hidden');
+                document.body.style.backgroundColor = '#0a0a0a';
+                logoText.style.color = '#ffffff'; // Logo blanc sur fond noir
             }
             window.scrollTo(0,0);
         }
 
-        const messages = ["⚡ DISPONIBLE", "🚗 EXPERT GPS", "🏗️ BÂTIMENT", "📦 RAPIDE"];
-        let idx = 0;
-        const bar = document.getElementById("message-bar");
-        function updateMsg() {
-            bar.style.opacity = 0;
-            setTimeout(() => { bar.textContent = messages[idx]; bar.style.opacity = 1; idx = (idx + 1) % messages.length; }, 400);
-        }
-        setInterval(updateMsg, 3000); updateMsg();
-
-        document.getElementById('contactForm').onsubmit = (e) => {
+        document.getElementById('recruteForm').onsubmit = (e) => {
             e.preventDefault();
-            alert("Merci ! Message bien reçu.");
+            alert("Votre proposition a été envoyée avec succès.");
             showPage('home');
         };
     </script>
